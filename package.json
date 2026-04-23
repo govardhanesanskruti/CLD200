@@ -1,0 +1,45 @@
+{
+  "name": "employee-crud-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2.7.0",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4.13.0",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-employeecrud": "cds watch --open demo.empcrud.employeecrud/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-customers": "cds watch --open demo.customer.customers/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/employeecrud",
+    "app/customers",
+    "app/customers"
+  ],
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+        "auth": "xsuaa"
+      },
+      "northwind": {
+        "kind": "odata",
+        "model": "srv/external/northwind",
+        "credentials": {
+          "url": "https://services.odata.org/v4/northwind/northwind.svc/"
+        }
+      }
+    }
+  }
+}
